@@ -53,7 +53,6 @@ add_library(parallel-rsp SHARED
 		arch/simd/rsp/vcmp.h
 		arch/simd/rsp/vdivh.h
 		arch/simd/rsp/vmac.h
-		arch/simd/rsp/vmov.h
 		arch/simd/rsp/vmrg.h
 		arch/simd/rsp/vmudh.h
 		arch/simd/rsp/vmul.h
@@ -102,6 +101,7 @@ if (PARALLEL_RSP_BAKED_LIGHTNING)
 		target_sources(lightning PRIVATE win32/mman/sys/mman.c)
 		target_include_directories(lightning PRIVATE win32/mman)
 	endif()
+	target_compile_definitions(lightning PUBLIC HAVE_MMAP=1)
 endif()
 
 target_link_libraries(parallel-rsp PUBLIC lightning)
